@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace WebMaze.DbStuff.Model
 {
-    public class Adress
+    public class Adress : BaseModel
     {
-        public long Id { get; set; }
-
         public string City { get; set; }
 
         public string Street { get; set; }
 
         public int HouseNumber { get; set; }
+
+        public virtual CitizenUser Owner { get; set; }
     }
 }

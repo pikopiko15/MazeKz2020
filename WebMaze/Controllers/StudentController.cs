@@ -2,12 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using MazeKz;
-using Microsoft.AspNetCore.Mvc;
+using WebMaze.Controllers.CustomAttribute;
 using WebMaze.DbStuff;
 using WebMaze.DbStuff.Model;
 using WebMaze.Models;
@@ -43,6 +39,7 @@ namespace WebMaze.Controllers
             return View(models);
         }
 
+        [IsAdmin]
         public IActionResult Lvou()
         {
             var viewModels = new List<GirlViewModel>();
@@ -52,7 +49,7 @@ namespace WebMaze.Controllers
             foreach (var citizen in dbCitizens)
             {
                 var meiViewModel = new GirlViewModel();
-                meiViewModel.Name = citizen.Name;
+                meiViewModel.Name = citizen.Login;
                 meiViewModel.Url = citizen.AvatarUrl;
                 viewModels.Add(meiViewModel);
             }
@@ -64,7 +61,7 @@ namespace WebMaze.Controllers
         {
             var dbModel = new CitizenUser()
             {
-                Name = name,
+                Login = name,
                 AvatarUrl = url
             };
 

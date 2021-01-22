@@ -1,0 +1,27 @@
+﻿@using WebMaze.Models.Account
+@model RegistrationViewModel
+
+<div>
+    Страница регистрации
+
+    <form action="@Url.Action("Registration", "Account")" method="post">
+        <div>
+            @Html.DisplayNameFor(x => x.Login):
+            @Html.TextBoxFor(x => x.Login)
+            @Html.ValidationMessageFor(x => x.Login)
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.Password):
+            @Html.TextBoxFor(x => x.Password, new { @type = "password" })
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.RepeatPassword):
+            @Html.TextBoxFor(x => x.RepeatPassword, new { @type = "password" })
+            @Html.ValidationMessageFor(x => x.RepeatPassword)
+        </div>
+        <div>
+            <input type="submit" value="Создать пользователя" />
+        </div>
+    </form>
+</div>
