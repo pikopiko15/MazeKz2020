@@ -1,0 +1,48 @@
+﻿@using WebMaze.Models.Energy
+@model EnergyViewModel
+
+<DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Energy</title>
+        <link rel="stylesheet" href="/css/MaralovEnergyStyles.css" />
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    </head>
+
+    <body>
+        <h5 class="bg-primary text-white text-center m-2 p-2">ENERGY CONSUMER</h5>
+        <form action="@Url.Action("EnergyConsumer", "Energy")" method="post" class="m-2">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label asp-for="FirstName">Your name:</label>
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName">Your lastname:</label>
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address">Your address:</label>
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber">Your phone:</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Debtor?</label>
+                <select asp-for="IsDebtor" class="form-control">
+                    <option value="">Choos an option</option>
+                    <option value="true">Yes, I am</option>
+                    <option value="false">No, I am not</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountOfDebt">Amount of debt:</label>
+                <input asp-for="AmountOfDebt" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </body>
+</html>

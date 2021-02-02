@@ -21,6 +21,8 @@ using WebMaze.Models.UserTasks;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 using WebMaze.Services;
 using Microsoft.AspNetCore.Http;
+using WebMaze.Models.Energy;
+using WebMaze.DbStuff.Model.Energy;
 
 namespace WebMaze
 {
@@ -92,6 +94,13 @@ namespace WebMaze
             configurationExpression.CreateMap<UserTask, UserTaskViewModel>();
             configurationExpression.CreateMap<UserTaskViewModel, UserTask>();
 
+            configurationExpression.CreateMap<EnergyUser, EnergyViewModel>();
+            configurationExpression.CreateMap<EnergyViewModel, EnergyUser>();
+
+            configurationExpression.CreateMap<EnergyUser, ConsumerProfileViewModel>();
+            configurationExpression.CreateMap<ConsumerProfileViewModel, EnergyUser>();
+
+
             var mapperConfiguration = new MapperConfiguration(configurationExpression);
             var mapper = new Mapper(mapperConfiguration);
             services.AddScoped<IMapper>(s => mapper);
@@ -116,6 +125,8 @@ namespace WebMaze
             services.AddScoped(s => new BusRouteRepository(s.GetService<WebMazeContext>()));
 
             services.AddScoped(s => new UserTaskRepository(s.GetService<WebMazeContext>()));
+
+            services.AddScoped(s => new EnergyUserRepository(s.GetService<WebMazeContext>()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
